@@ -81,6 +81,12 @@ async function getPkg() {
   }
 
   const [packageName, ...args] = argv._;
+
+  if (packageName === undefined) {
+    console.log(chalk.red('Specify the package name at the first argument'));
+    process.exit(1);
+  }
+
   const nodeModulesDir = path.join(workdir, 'node_modules');
   const targetName = path.join(nodeModulesDir, packageName);
 
