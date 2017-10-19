@@ -55,7 +55,7 @@ async function getPkg() {
     })
 
   Object.keys(pkg.dependencies).forEach(name => {
-    yargs.command(name).argv
+    yargs.command(name, '');
   });
 
   const argv = yargs.help().argv;
