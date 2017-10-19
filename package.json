@@ -1,6 +1,6 @@
 {
   "name": "@nju33/clify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Run the package function in cli",
   "main": "index.js",
   "bin": {
