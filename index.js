@@ -7,6 +7,7 @@ const mkdirp = require('mkdirp');
 const chalk = require('chalk');
 const ora = require('ora');
 const yargs = require('yargs');
+const isPromise = require('is-promise');
 
 const pAccess = promisify(fs.access);
 const pReadFile = promisify(fs.readFile);
@@ -92,9 +93,33 @@ async function getPkg() {
   const targetName = path.join(nodeModulesDir, packageName);
 
   try {
-    const fn = require(targetName);
-    const result = fn.apply(fn, args);
-    console.log(JSON.stringify(result, null, 2))
+    let fn = require(targetName);
+    if (fn.default !== undefined) {
+      fn = fn.default;
+    }
+
+    try {
+      const result = fn.apply(fn, args.map(arg => {
+        try {
+          arg = eval(`(${arg})`);
+          return arg;
+        } catch (_) {
+          return arg;
+        }
+      }));
+      
+      if (!isPromise) {
+        console.log(JSON.stringify(result, null, 2))
+      } else {
+        result.then(result => {
+          console.log(JSON.stringify(result, null, 2))
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      process.exit(1);
+    }
+
   } catch (_) {
     (async () => {
       const spinner = (() => {
@@ -122,9 +147,33 @@ async function getPkg() {
           process.exit(1);
       }
 
-      const fn = require(targetName);
-      const result = fn.apply(fn, args);
-      console.log(JSON.stringify(result, null, 2))
+      let fn = require(targetName);
+      if (fn.default !== undefined) {
+        fn = fn.default;
+      }
+
+      try {
+        const result = fn.apply(fn, args.map(arg => {
+          try {
+            arg = eval(`(${arg})`);
+            return arg;
+          } catch (_) {
+            return arg;
+          }
+        }));
+
+        if (!isPromise) {
+          console.log(JSON.stringify(result, null, 2))
+        } else {
+          result.then(result => {
+            console.log(JSON.stringify(result, null, 2))
+          });
+        }
+      } catch (err) {
+        console.log(err);
+        process.exit(1);
+      }
+
     })();
   }
 })();
