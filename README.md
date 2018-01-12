@@ -7,15 +7,12 @@ Before installng module, whose function use in cli
 ## Usage
 
 ```bash
-npx @nju33/clify  <module-name> <...args>
+npx @nju33/clify <module-name> <...args>
 ```
 
 ## Example
 
 ```bash
-
-The installation process for that module is entered.
-
 # Firstly, runnning to install process for you tried to use module (this's only once)
 $ npx @nju33/clify nanoid
 # ✔ nanoid installing...
