@@ -26,7 +26,7 @@ $ npx @nju33/clify nanoid
 
 # async-await is fine as well.
 # Arguments can be passed after the module name.
-$ npx @nju33/clify  '__dirname'
+$ npx @nju33/clify pkg-dir '__dirname'
 "path/to/node/project"
 
 # You can remove to installing module so far. in following command.
