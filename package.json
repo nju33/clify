@@ -1,7 +1,14 @@
 {
   "name": "@nju33/clify",
   "version": "0.1.0",
-  "description": "Run the package function in cli",
+  "description": "Before installng module, whose function use in cli",
+  "files": [
+    "index.js",
+    "package.json",
+    "package-lock.json",
+    "LICENSE",
+    "README.md"
+  ],
   "main": "index.js",
   "bin": {
     "clify": "./index.js"
