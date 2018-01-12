@@ -107,8 +107,8 @@ async function getPkg() {
           return arg;
         }
       }));
-      
-      if (!isPromise) {
+
+      if (!isPromise(result)) {
         console.log(JSON.stringify(result, null, 2))
       } else {
         result.then(result => {
@@ -162,7 +162,7 @@ async function getPkg() {
           }
         }));
 
-        if (!isPromise) {
+        if (!isPromise(result)) {
           console.log(JSON.stringify(result, null, 2))
         } else {
           result.then(result => {
