@@ -1,6 +1,6 @@
 {
   "name": "@nju33/clify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Before installng module, whose function use in cli",
   "files": [
     "index.js",
